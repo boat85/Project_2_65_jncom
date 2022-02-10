@@ -1,0 +1,78 @@
+{% extends 'main.html'%}
+{% load static %}
+{%block body%}
+
+{%for p in pd%}
+        
+<div class="container" style="width: 80%;padding-top: 1%;">
+  <div class="">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-sm-12" style="text-align: center;">
+
+      {%if p.img1.url != ''%}
+        <img width="540" height="" src="{{p.img1.url}}"> <br> <br>
+      {%else%}
+        <img width="250px" height="250px" src="{% static 'img/duser.png'%}"> <br> <br>
+      {%endif%}
+        </di>
+      </div>
+    </div>
+      <div class="col-sm-12" style="text-align: center;">
+          <h2 class="animated rubberBand">{{p.name}}</h2>
+        </div>
+        <br>
+        <div class="col m-5">
+            <table class="table table-borderless" style="font-size: 20px">
+              <thead>
+                <tr>
+                  <th scope="row">
+                    ราคา</th>
+                  <td>{{p.price}}  บาท</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"> จำนวน</th>
+                  <td>{{p.qty}} {{p.unit}}</td>
+                </tr>
+                <tr>
+                  <th scope="row"> ยี่ห้อ</th>
+                  <td>{{p.brand}}</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row"> ประเภท</th>
+                  <td>{{p.type}}</td>
+                </tr>
+
+                <tr>
+                  <th scope="row"> รายละเอียด</th>
+                  <td>{{p.detail}}</td>
+                </tr>
+                <tr>
+                  <th scope="row"> คำอธิบาย</th>
+                  <td>{{p.description}}</td>
+                </tr>
+
+              
+              </tbody>
+            </table>
+
+         
+
+
+        </div>
+        <div style="text-align: center;padding-top:3%;">
+          <button type="submit" class="btn btn-primary">ซื้อ</button>
+          <a type="reset" class="btn btn-danger" href="/index">ยกเลิก</a>
+        </div>  
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endfor%}
+
+{%endblock%}

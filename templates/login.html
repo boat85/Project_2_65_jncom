@@ -1,0 +1,70 @@
+{% extends 'main.html'%}
+{% load static %}
+{%block body%}
+
+<div class="container" style="width: 40%">
+	<div class="card" >
+    <div class="card-header  p-4 mb-7" style="background-color:rgb(41 185 0);color: #fff;">
+      <h3 style="text-align: center;">เข้าสู่ระบบ</h3>
+    </div>
+
+    <div class="card-body" style="background-color: #fff;padding-top:10%;">
+      <form action="/login" method="POST">
+      
+        {% csrf_token %}
+        <div class="input-group form-group">
+        
+        
+
+          <div class="input-group-prepend" >
+          
+            <span class="input-group-text"><i class="fas fa-user"style="color: #000000;"></i></span>
+          </div>
+          <input type="text" class="form-control" id = "username" name = "username" placeholder="ชื่อผู้เข้าใช้">
+          
+        </div>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-key"style="color: #000000;"></i></span>
+          </div>
+          <input type="password" class="form-control" id = "pass" name = "pass" placeholder="รหัสผ่าน">
+        </div>
+        
+        <div style="text-align: center;">
+        {% for m in messages%}
+        <h style="color:#ff0000">{{ m }}</h>
+        {% endfor %}
+        </div>
+
+        <div class="form-group" style="text-align: center;margin-bottom:0;padding-top:10%;">
+         <button class="btn btn-primary" type="submit" id="slogin" role="button" style="color: white; width:50%;font-size:150%">เข้าสู่ระบบ</button>
+
+
+
+
+
+<div style="text-align: center; margin-top: 10px;padding-top:3%;">
+  <a href="/register" style="color: #10ff00; font-size: 18px;">สมัคสมาชิก</a>
+</div>
+
+    
+</div>
+</form>
+    </div>
+    <div class="card-footer" style="background-color: #000;color: #fff;">
+      <div class="d-flex justify-content-center">
+        หากต้องการซื้อสินค้าหรือส่งซ่อม
+      </div>
+      <div class="d-flex justify-content-center">
+        ท่านต้องสมัครสมาชิกก่อนจึงจะเข้าใช้งานระบบได้
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+{%endblock%}
+
+
+

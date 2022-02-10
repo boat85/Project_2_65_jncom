@@ -1,0 +1,210 @@
+{% extends 'main.html'%}
+{% load static %}
+{%block body%}
+
+				{%for u in u%}
+        
+			<div class="container" style="width: 60%;padding-top: 2%;">
+				<div class="card shadow p-3 mb-5 bg-white rounded">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-1"></div>
+							<div class="col-sm-12" style="text-align: center;">
+
+						{%if u.images.url != ''%}
+							<img width="250px" height="250px" src="{{u.images.url}}"> <br> <br>
+						{%else%}
+						<img width="250px" height="250px" src="{% static 'img/duser.png'%}"> <br> <br>
+						{%endif%}
+
+								<h2 class="animated rubberBand">{{u.username}}</h2>
+							</div>
+							<br>
+							<div class="col m-5">
+									<table class="table table-borderless" style="font-size: 20px">
+										<thead>
+											<tr>
+												<th scope="row"><i class="fas fa-user-circle"></i>
+													ชื่อผู้ใช้</th>
+												<td>{{u.username}}</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row"><i class="fas fa-signature"></i> ชื่อ</th>
+												<td>{{u.fname}}</td>
+											</tr>
+											<tr>
+												<th scope="row"><i class="fas fa-signature"></i> นามสกุล</th>
+												<td>{{u.lname}}</td>
+											</tr>
+											<tr>
+												<th scope="row"><i class="fas fa-envelope"></i> อีเมล</th>
+												<td>{{u.email}}</td>
+											</tr>
+											<tr>
+												<th scope="row"><i class="fas fa-phone"></i> เบอร์</th>
+												<td>{{u.tell}}</td>
+											</tr>
+
+											<tr>
+												<th scope="row"><i class="fas fa-address"></i> ที่อยู่</th>
+												<td>{{u.address}}</td>
+											</tr>
+
+
+										</tbody>
+									</table>
+							</div>
+						</div>
+					</div>
+			
+
+
+
+
+
+				 <div class="form-group" style="text-align: right; color: #fff">
+						<a href="#"
+							class="btn btn-primary shadow-lg p-2 mb-1 rounded" type="submit"
+							id="submit" role="button" data-toggle="modal"
+							data-target=".bd-example-modal-lg2">แก้ไขข้อมูล</a>
+					</div> 
+			
+					<div class="modal fade bd-example-modal-lg2" tabindex="-1"
+						role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header" style="background-color: rgb(0, 0, 0);">
+									<h5 class="modal-title" id="exampleModalLabel">
+										<i class="fas fa-edit" style="color: #fff; font-size: 30px;"></i>
+									</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true"
+											style="color: #fff; text-shadow: #fff;">&times;</span>
+									</button>
+								</div>
+			
+									<form action="UpdateUser" method="post" enctype="multipart/form-data">
+										<div class="modal-body" style="padding: 2rem;">
+											<div class="form" style="margin-bottom: 1.2rem;">
+												<div style="text-align: center;">
+													<h3 class="animated rubberBand" style="color: #000;">แก้ไขข้อมูลสมาชิก</h3>
+												</div>
+											</div>
+											<div class="form-row">
+												<div class="form-group col-md-12">
+													<input type="hidden" name="userID" id="userID"
+														value="${user.userID}"> <label for="inputEmail4"><i
+														class="fas fa-user-circle" style="color: #000 !important;"></i>
+														ชื่อผู้ใช้ </label> <input type="text" class="form-control"
+														name="account" id="account" value="${user.account}">
+												</div>
+			
+											</div>
+											<div class="form-row">
+												<div class="form-group col-md-6">
+													<label><i class="fas fa-signature"></i> ชื่อจริง </label> <input
+														type="text" class="form-control" id="fistName"
+														name="fistName" value="${user.fistName}">
+												</div>
+												<div class="form-group col-md-6">
+													<label><i class="fas fa-signature"></i> นามสกุล </label> <input
+														type="text" class="form-control" id="lastName"
+														name="lastName" value="${user.lastName}">
+												</div>
+											</div>
+			
+											<div class="form-row">
+												<div class="form-group col-md-12">
+													<label><i class="fas fa-envelope"></i> อีเมล์ </label> <input
+														type="email" class="form-control" id="email" name="email"
+														value="${user.email}">
+												</div>
+											</div>
+			
+											<div class="form-row">
+												<div class="form-group col-md-8">
+													<label for="inputEmail4"><i class="fas fa-phone"
+														style="color: #000;"></i> เบอร์โทรศัพท์</label> <input type="tel"
+														class="form-control" id="tel" name="tel" value="${user.tel}">
+												</div>
+											<c:if test="${sessionScope.Status==1}">
+										<div class="form-group col-md-4">
+											<label for="exampleFormControlSelect1">สถานะ</label> 
+											<select name="status"
+												class="form-control" id="exampleFormControlSelect1">
+												<option value="2">ผู้ใช้ทั่วไป</option>
+												<option value="1">ผู้ดูแลระบบ</option>
+											</select>
+										</div>
+												</c:if>
+											</div>
+			
+										<script>
+								$(document).ready(function() {
+									$("#userphoto").change(function() {
+										if (this.files && this.files[0]) {
+											var FR = new FileReader();
+			
+											FR.onload = function(e) {
+												$("#preview").attr("src", e.target.result);
+												img_data = e.target.result;
+											};
+											FR.readAsDataURL(this.files[0]);
+										}
+									});
+								})
+							</script>
+							
+								<div class="form-row">
+								<div class="">
+									<div class="" style="">
+										<div>เพิ่มภาพสถานประกอบการ</div>
+							<div style="width: 80%; height: 80%;">
+										
+							<c:choose>
+							<c:when test="${not empty user.image}">
+								<img src="${f}${user.image}" id="preview" style="width: 60%;" >
+							</c:when>
+							<c:otherwise>
+							<img src="img/1.png" id="preview" style="width: 60%;" >
+							</c:otherwise>
+						</c:choose>   
+										</div>
+									</div>
+			
+									<div class="file-field input-field">
+										<input type="file" name="userphoto" id="userphoto"
+											class="btn grey" value="${f}${user.image}">
+									</div>
+			
+								</div>
+							</div>
+					
+										</div>
+			
+										<div class="modal-footer" style="border-top: 1px solid #080808;">
+										<input class="btn btn-primary" type="submit" id="submit"
+												role="button" value="แก้ไข">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">ปิด</button>
+											
+										</div>
+									</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+
+
+{%endfor%}
+
+
+
+
+
+{%endblock%}

@@ -1,0 +1,39 @@
+{% extends 'main.html'%}
+{% load static %}
+{%block body%}
+
+<style>
+<!--
+.f:hover {
+	background-color: #2266bb !important;
+	color: #fff;
+}
+-->
+</style>
+<div class="container"
+	style="width: 90%; text-align: center; padding-top: 8%;">
+	<img alt="" src="{%static 'img/cogs.gif' %%}" width="120" height="120">
+	
+	<div class="row">
+		<div class="shadow  mb-5 rounded f"
+			style="width: 25%; text-align: center; margin-right: 15px; margin-top: 50px; margin-left: 10%; background-color: #000;">
+			<a href="#"><i class="fas fa-users"
+				style="color: #fff; font-size: 170px; padding: 15px;"></i></a>
+			<h4 style="color: #fff;">ผู้ใช้งานระบบ</h4>
+		</div>
+		<div class="shadow mb-5 rounded f"
+			style="width: 25%; text-align: center; margin-top: 50px; background-color: #000; margin-right: 15px;">
+			<a href="#"><i class="bi bi-bag-check"
+				style="color: #fff; font-size: 150px; padding: 15px;"></i></a>
+			<h4 style="color: #fff;">สินค้า</h4>
+		</div>
+		<div class="shadow  mb-5 rounded f"
+			style="width: 25%; text-align: center; margin-top: 50px; background-color: #000;">
+			<a href="#"><i class="bi bi-clipboard2-data"
+				style="color: #fff; font-size: 150px; padding: 20px;"></i></a>
+			<h4 style="color: #fff;">รายงาน</h4>
+		</div>
+		</div>
+</div>
+
+{%endblock%}

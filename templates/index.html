@@ -1,0 +1,126 @@
+{% extends 'main.html'%}
+{% load static %}
+{%block body%}
+
+
+<div class="container" style="text-align: center;width:70%;">
+  <div >
+  <div style="height: 20px;"></div>
+
+  <h3 class="mb-3"style="color: #000;">เริ่มการค้นหาได้ทันที</h3>
+  <form>
+    <div class="mb-3">
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="text">
+      <div id="emailHelp" class="form-text">ค้นหาในสิ่งที่คุณต้องการ</div>
+    </div>
+  </form>
+
+  <a class="btn btn-primary p-2 mb-1" href="/"
+    style="background-color: #2266bb !important; border-color: #2266bb;color:#fff;">
+    <div class="c1 fsize">
+      <i class="fas fa-search "> ค้นหา </i>
+    </div>
+  </a>
+</div>
+</div>
+
+
+
+{% comment %} 
+
+<div class="row"style="padding-top:5%;">
+<div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
+  <img src="{% static 'img/1.png' %}" class="card-img-top" alt="">
+  <div class="card-body">
+    <p class="card-text">ชื่อ</p>
+    <p class="card-text">ราคา</p>
+    <p class="card-text">รายละเอียด</p>
+    <div style="align: right">
+    <button type="submit" class="btn btn-primary">ซื้อ</button>
+    </div>
+  </div>
+</div> {% endcomment %}
+
+
+
+
+{% comment %} Menu {% endcomment %}
+
+<div class="container" style="padding-top: 8%;">
+
+  <div class="btn-group" role="group" aria-label="Basic example" >
+    <button type="button" style="background-color: #50ff00;
+    border-color: #000;"class="btn btn-success">ทั้งหมด</button>
+
+    <button type="button" style="background-color: #000;
+    border-color: #000;"class="btn btn-success">คอมพิวเตอร์</button>
+
+    <button type="button" style="background-color: #000;
+    border-color: #000;"class="btn btn-success">ปรินเตอร์</button>
+
+    <button type="button" style="background-color: #000;
+    border-color: #000;"class="btn btn-success">เมาส์</button>
+
+    <button type="button" style="background-color: #000;
+    border-color: #000;"class="btn btn-success">คีย์บอร์ด</button>
+
+    
+    <button type="button" style="background-color: #000;
+    border-color: #000;"class="btn btn-success">แฟรชไดร์</button>
+
+    <button type="button" style="background-color: #000;
+    border-color: #000;"class="btn btn-success">Router</button>
+
+    
+
+    <button type="button" style="background-color: #000;
+    border-color: #000;"class="btn btn-success">1</button>
+    <button type="button" style="background-color: #000;
+    border-color: #000;"class="btn btn-success">2</button>
+    <button type="button" style="background-color: #000;
+    border-color: #000;"class="btn btn-success">3</button>
+
+  </div>
+  <div class="container" style="padding-top: 2%;"></div>
+   
+
+  <div class="row">
+    {%for p in pd%}
+  
+      <div class="col-sm-4">
+        <div class="card shadow p-3 mb-5" style="width: 23rem;">
+
+              {% comment %} <img src="{% static 'img/1.png' %}" class="card-img-top"
+                width="" height="220"> {% endcomment %}
+
+              {%if p.img1.url != ''%}
+                <img width="" height="330" src="{{p.img1.url}}"class="card-img-top"> <br> <br>
+              {%else%}
+                <img width="250px" height="250px" src="{% static 'img/1.png'%}"> <br> <br>
+              {%endif%}
+
+          <div class="card-body">
+            <h5 class="card-title" style="text-align: center">{{p.name}}</h5>
+            <p class="card-text">ราคา : {{p.price}} บาท</p>
+            <p class="card-text">จำนวน : {{p.qty}} {{p.unit}}</p>
+            <p class="card-text">ยี่ห้อ : {{p.brand}}</p>
+            {% comment %} <p class="card-text">รายละเอียด : ยังไม่มี</p> {% endcomment %}
+            <div class="text-right">
+              <form action="/showproduct" method="POST">
+              <a href="#"
+                class="btn btn-primary" style="background-color: #50ff00;
+                border-color: #50ff00;">ซื้อ</a> 
+               
+                {% csrf_token %}
+                <input type="hidden" value="{{p.id}}" name="id">
+                <button type="submit" class="btn btn-primary">ข้อมูลเพิ่มเติม</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {%endfor%}
+
+
+{%endblock%}

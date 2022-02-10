@@ -1,0 +1,82 @@
+{% extends 'main.html'%}
+{% load static %}
+{%block body%}
+
+
+
+<div style="height: 20%"></div>
+<div style="text-align: center;">
+<h1>สมัครสมาชิก</h1>
+</div>
+
+
+
+<div class ="container" style="padding-top:3%;width:75%">
+
+{% for m in messages%}
+	<h4 style="color:#ff0000">{{ m }}</h4>
+{% endfor %}
+
+
+<form action="/adduser" method="POST">
+{% csrf_token %}
+
+<div class="form-group">
+	<label for="exampleInputEmail1">ชื่อผู้เข้าใช้</label>
+	<input type="text" class="form-control" id="name" name="username" aria-describedby="emailHelp" placeholder="ชื่อผู้เข้าใช้">
+</div>
+<div class="form-row">
+	<div class="form-group col-md-6">
+		<label for="exampleInputEmail1">ชื่อจริง</label>
+		<input type="text" class="form-control" id="name" name="fname" aria-describedby="emailHelp" placeholder="ชื่อผู้เข้าใช้">
+	</div>
+		<div class="form-group col-md-6">
+		<label for="exampleInputPassword1">นามสกุล</label>
+		<input type="text" class="form-control" id="lname" name="lname" aria-describedby="emailHelp" placeholder="นามสกุล">
+	</div>
+</div>
+
+
+
+<div class="form-row">
+	<div class="form-group col-md-6">
+		<label for="exampleInputEmail1">ชื่อเล่น</label>
+		<input type="text" class="form-control" id="name" name="nname" aria-describedby="emailHelp" placeholder="ชื่อเล่น">
+	</div>
+		<div class="form-group col-md-6">
+		<label for="exampleInputPassword1">เบอร์โทรศัพท์</label>
+		<input type="text" class="form-control" id="lname" name="tell" aria-describedby="emailHelp" placeholder="000-000-00">
+	</div>
+</div>
+
+
+<div class="form-group">
+	<label for="exampleInputPassword1">อีเมล์</label>
+	<input type="email" class="form-control" id="lname" name="email" aria-describedby="emailHelp" placeholder="อีเมล์">
+</div>
+
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">ที่อยู่</label>
+  <textarea class="form-control" name="address"id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+
+<div class="form-group">
+	<label for="exampleInputPassword1">รหัสผ่าน</label>
+	<input type="password" class="form-control" id="lname" name="password" aria-describedby="emailHelp" placeholder="*******">
+</div>
+
+<div class="form-group">
+	<label for="exampleInputPassword1">ยืนยันรหัสผ่าน</label>
+	<input type="password" class="form-control" name="repassword" aria-describedby="emailHelp" placeholder="*******">
+</div>
+
+<div style="text-align: center;padding-top:3%;">
+<button type="submit" class="btn btn-primary">สมัครสมาชิก</button>
+<a type="reset" class="btn btn-danger" href="/index">ยกเลิก</a>
+</div>
+</form>
+
+</div>
+
+
+{%endblock%}
