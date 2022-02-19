@@ -2,9 +2,66 @@
 {% load static %}
 {%block body%}
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#sregister").click(function() {
+
+			if ($("#username").val() == "") {
+				alert("กรุณากรอกชื่อผู้เข้าใช้");
+				$("#username").focus();
+				return false;
+			}
+			if ($("#fname").val() == "") {
+				alert("กรุณากรอกชื่อจริง");
+				$("#fname").focus();
+				return false;
+			}
+			if ($("#lname").val() == "") {
+				alert("กรุณากรกอนามสกุล");
+				$("#lname").focus();
+				return false;
+			}
+			if ($("#nname").val() == "") {
+				alert("กรุณากรกชื่อเล่น");
+				$("#nname").focus();
+				return false;
+			}
+
+			if ($("#email").val() == "") {
+				alert("กรุณากรอกอีเมล");
+				$("#email").focus();
+				return false;
+			}
+			if ($("#tell").val() == "") {
+				alert("กรุณากรอกเบอร์โทรศัพท์");
+				$("#tell").focus();
+				return false;
+			}
+			if ($("#password").val() == "") {
+				alert("กรุณากรอกหรัสผ่าน");
+				$("#password").focus();
+				return false;
+			}
+			if ($("#repassword").val() == "") {
+				alert("กรุณากรอกยืนยันรหัสผ่าน");
+				$("#repassword").focus();
+				return false;
+			}
+			
+			if ($("#password").val() != $("#repassword").val()) {
+				alert("รหัสผ่านไม่ตรงกัน โปรดกรอกรหัสผ่านให้ตรงกัน");
+				$("#repassword").focus();
+				return false;
+			}
+
+		});
+	});
+</script>
 
 
-<div style="height: 20%"></div>
+
+
+<div style="height: 10%"></div>
 <div style="text-align: center;">
 <h1>สมัครสมาชิก</h1>
 </div>
@@ -18,17 +75,18 @@
 {% endfor %}
 
 
-<form action="/adduser" method="POST">
+<form action="/adduser" method="POST" enctype="multipart/form-data">
 {% csrf_token %}
 
 <div class="form-group">
 	<label for="exampleInputEmail1">ชื่อผู้เข้าใช้</label>
-	<input type="text" class="form-control" id="name" name="username" aria-describedby="emailHelp" placeholder="ชื่อผู้เข้าใช้">
+	<input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="ชื่อผู้เข้าใช้">
 </div>
+
 <div class="form-row">
 	<div class="form-group col-md-6">
 		<label for="exampleInputEmail1">ชื่อจริง</label>
-		<input type="text" class="form-control" id="name" name="fname" aria-describedby="emailHelp" placeholder="ชื่อผู้เข้าใช้">
+		<input type="text" class="form-control" id="fname" name="fname" aria-describedby="emailHelp" placeholder="ชื่อจริง">
 	</div>
 		<div class="form-group col-md-6">
 		<label for="exampleInputPassword1">นามสกุล</label>
@@ -36,42 +94,86 @@
 	</div>
 </div>
 
+<div class="form-row">
+	<div class="form-group col-md-6">
+		<label for="exampleInputEmail1">ชื่อเล่น</label>
+		<input type="text" class="form-control" id="nname" name="nname" aria-describedby="emailHelp" placeholder="ชื่อเล่น">
+	</div>
+
+	<div class="form-group col-md-6">
+		<label for="exampleInputEmail1">เพศ</label>
+		<select class="form-select" name="sex" aria-label="Default select example">
+		<option selected value="0">เลือกเพศ</option>
+		<option value="1">ชาย</option>
+		<option value="2">หญิง</option>
+	</select>
+</div>
+</div>
 
 
 <div class="form-row">
 	<div class="form-group col-md-6">
-		<label for="exampleInputEmail1">ชื่อเล่น</label>
-		<input type="text" class="form-control" id="name" name="nname" aria-describedby="emailHelp" placeholder="ชื่อเล่น">
+		<label for="exampleInput">อีเมล์</label>
+		<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="อีเมล์">
 	</div>
 		<div class="form-group col-md-6">
-		<label for="exampleInputPassword1">เบอร์โทรศัพท์</label>
-		<input type="text" class="form-control" id="lname" name="tell" aria-describedby="emailHelp" placeholder="000-000-00">
+			<label for="exampleInput">เบอร์โทรศัพท์</label>
+			<input type="text" class="form-control" id="tell" name="tell" aria-describedby="emailHelp" placeholder="000-000-0000">
 	</div>
-</div>
-
-
-<div class="form-group">
-	<label for="exampleInputPassword1">อีเมล์</label>
-	<input type="email" class="form-control" id="lname" name="email" aria-describedby="emailHelp" placeholder="อีเมล์">
 </div>
 
 <div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">ที่อยู่</label>
-  <textarea class="form-control" name="address"id="exampleFormControlTextarea1" rows="3"></textarea>
+  <textarea class="form-control" name="address" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
 
 <div class="form-group">
 	<label for="exampleInputPassword1">รหัสผ่าน</label>
-	<input type="password" class="form-control" id="lname" name="password" aria-describedby="emailHelp" placeholder="*******">
+	<input type="password" class="form-control" id="password" name="password" aria-describedby="emailHelp" placeholder="*******">
 </div>
 
 <div class="form-group">
 	<label for="exampleInputPassword1">ยืนยันรหัสผ่าน</label>
-	<input type="password" class="form-control" name="repassword" aria-describedby="emailHelp" placeholder="*******">
+	<input type="password" class="form-control" id="repassword" aria-describedby="emailHelp" placeholder="*******">
+</div>
+
+<input type="hidden" class="form-control" id="status" name="status"
+value="2">
+<div class="form-row">
+
+<script>
+$(document).ready(function() {
+$("#images").change(function() {
+	if (this.files && this.files[0]) {
+		var FR = new FileReader();
+
+		FR.onload = function(e) {
+			$("#preview").attr("src", e.target.result);
+			img_data = e.target.result;
+		};
+		FR.readAsDataURL(this.files[0]);
+	}
+});
+})
+</script>
+
+<div class="pout">
+<div class="" style="padding: 10px;">
+	<div>เพิ่มภาพโปรไฟล์</div>
+	<diV style="width: 80%; height: 80%;">
+	<img src="" id="preview" style="width: 60%;" >
+	</diV>
+</div>
+<div class="file-field input-field">
+	<input type="file" name="images" id="images"
+		class="btn grey">
+</div>
+</div>
+</div>
 </div>
 
 <div style="text-align: center;padding-top:3%;">
-<button type="submit" class="btn btn-primary">สมัครสมาชิก</button>
+<button type="submit" class="btn btn-primary" name="submit" id="sregister" role="button">สมัครสมาชิก</button>
 <a type="reset" class="btn btn-danger" href="/index">ยกเลิก</a>
 </div>
 </form>

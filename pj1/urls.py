@@ -13,5 +13,15 @@ urlpatterns = [
     path('login',views.login),
     path('logout',views.logout),
     path('showproduct',views.showproduct),
-    path('admin_u',views.admin_u)
+    path('admin_u',views.admin_u),
+    path('add_product',views.add_product),
+    path('add_prod',views.add_prod),
+    path('showallproducts',views.showallproducts),
+    path('delete_product',views.delete_product),
+    path('showallusers',views.showallusers),
+    path('showwhileproducts',views.showwhileproducts),
+    path('swhileproducts',views.swhileproducts)
+    
+    
+    
 ]

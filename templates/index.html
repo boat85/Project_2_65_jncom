@@ -3,24 +3,36 @@
 {%block body%}
 
 
+<style>
+  <!--
+  .menu:hover {
+    background-color: #75d500 !important;
+    border-color: #75d500 !important;
+    color: #fff;
+  }
+  -->
+  </style>
+
 <div class="container" style="text-align: center;width:70%;">
   <div >
   <div style="height: 20px;"></div>
 
   <h3 class="mb-3"style="color: #000;">เริ่มการค้นหาได้ทันที</h3>
-  <form>
+
+  <form action="/swhileproducts" method="get">
     <div class="mb-3">
-      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="text">
+      <input type="text" class="form-control" id="s" name="s" aria-describedby="text">
       <div id="emailHelp" class="form-text">ค้นหาในสิ่งที่คุณต้องการ</div>
     </div>
-  </form>
 
-  <a class="btn btn-primary p-2 mb-1" href="/"
+  
+  <button class="btn btn-primary p-2 mb-1" type="submit"
     style="background-color: #2266bb !important; border-color: #2266bb;color:#fff;">
     <div class="c1 fsize">
       <i class="fas fa-search "> ค้นหา </i>
     </div>
-  </a>
+  </button>
+</form>
 </div>
 </div>
 
@@ -42,45 +54,44 @@
 </div> {% endcomment %}
 
 
-
-
 {% comment %} Menu {% endcomment %}
+
+
 
 <div class="container" style="padding-top: 8%;">
 
+
+
+
   <div class="btn-group" role="group" aria-label="Basic example" >
-    <button type="button" style="background-color: #50ff00;
-    border-color: #000;"class="btn btn-success">ทั้งหมด</button>
+    <button type="button" style="background-color: #f00;
+    border-color: #000;"class="btn btn-danger"><i class="bi bi-star"></i> แนะนำ</button>
 
     <button type="button" style="background-color: #000;
-    border-color: #000;"class="btn btn-success">คอมพิวเตอร์</button>
+    border-color: #000;"class="btn btn-success menu">คอมพิวเตอร์</button>
 
     <button type="button" style="background-color: #000;
-    border-color: #000;"class="btn btn-success">ปรินเตอร์</button>
+    border-color: #000;"class="btn btn-success menu">ปรินเตอร์</button>
+
+    <a href="showwhileproducts" type="button" style="background-color: #000;
+    border-color: #000;"class="btn btn-success menu" >เมาส์</a>
 
     <button type="button" style="background-color: #000;
-    border-color: #000;"class="btn btn-success">เมาส์</button>
-
-    <button type="button" style="background-color: #000;
-    border-color: #000;"class="btn btn-success">คีย์บอร์ด</button>
-
-    
-    <button type="button" style="background-color: #000;
-    border-color: #000;"class="btn btn-success">แฟรชไดร์</button>
-
-    <button type="button" style="background-color: #000;
-    border-color: #000;"class="btn btn-success">Router</button>
+    border-color: #000;"class="btn btn-success menu">คีย์บอร์ด</button>
 
     
+    <button type="button" style="background-color: #000;
+    border-color: #000;"class="btn btn-success menu">แฟรชไดร์</button>
 
     <button type="button" style="background-color: #000;
-    border-color: #000;"class="btn btn-success">1</button>
-    <button type="button" style="background-color: #000;
-    border-color: #000;"class="btn btn-success">2</button>
-    <button type="button" style="background-color: #000;
-    border-color: #000;"class="btn btn-success">3</button>
+    border-color: #000;"class="btn btn-success menu">Router</button>
+
 
   </div>
+
+
+
+
   <div class="container" style="padding-top: 2%;"></div>
    
 
@@ -88,13 +99,13 @@
     {%for p in pd%}
   
       <div class="col-sm-4">
-        <div class="card shadow p-3 mb-5" style="width: 23rem;">
+        <div class="card shadow p-1 mb-5" style="width: 26rem;">
 
               {% comment %} <img src="{% static 'img/1.png' %}" class="card-img-top"
                 width="" height="220"> {% endcomment %}
 
               {%if p.img1.url != ''%}
-                <img width="" height="330" src="{{p.img1.url}}"class="card-img-top"> <br> <br>
+                <img width="100" height="390" src="{{p.img1.url}}"class="card-img-top"> <br> <br>
               {%else%}
                 <img width="250px" height="250px" src="{% static 'img/1.png'%}"> <br> <br>
               {%endif%}
@@ -104,16 +115,18 @@
             <p class="card-text">ราคา : {{p.price}} บาท</p>
             <p class="card-text">จำนวน : {{p.qty}} {{p.unit}}</p>
             <p class="card-text">ยี่ห้อ : {{p.brand}}</p>
+            <p class="card-text">ประกัน : {{p.productinsurance}} ปี</p>
+            
             {% comment %} <p class="card-text">รายละเอียด : ยังไม่มี</p> {% endcomment %}
             <div class="text-right">
               <form action="/showproduct" method="POST">
               <a href="#"
-                class="btn btn-primary" style="background-color: #50ff00;
-                border-color: #50ff00;">ซื้อ</a> 
+                class="btn btn-primary" style="background-color: #2f9500;
+                border-color: #2f9500;"><i class="bi bi-bag-plus-fill"></i> ซื้อ</a> 
                
                 {% csrf_token %}
                 <input type="hidden" value="{{p.id}}" name="id">
-                <button type="submit" class="btn btn-primary">ข้อมูลเพิ่มเติม</button>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-calendar3-week"></i> ข้อมูลเพิ่มเติม</button>
             </form>
             </div>
           </div>

@@ -7,6 +7,7 @@ class users(models.Model):
   fname = models.CharField(max_length=50)
   lname = models.CharField(max_length=50)
   nname=models.CharField(max_length=50)
+  sex = models.IntegerField()
   tell = models.CharField(max_length=13)
   email = models.EmailField()
   address = models.TextField()
@@ -15,14 +16,13 @@ class users(models.Model):
   images = models.ImageField(upload_to='img_users',blank=True)
   
   
-  
-  
 class Products(models.Model):
   name = models.CharField(max_length=100)
   price = models.FloatField(default=0.0)
   qty = models.IntegerField(default=0)
   type = models.CharField(max_length=255)
   unit = models.CharField(max_length=50)
+  productinsurance = models.IntegerField()
   brand = models.CharField(max_length=255)
   detail = models.TextField(blank=True)
   description = models.TextField(blank=True)

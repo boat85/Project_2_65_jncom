@@ -1,0 +1,253 @@
+
+{% extends 'main.html'%}
+{% load static %}
+{%block body%}
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#addproduct").click(function() {
+
+			if ($("#name").val() == "") {
+				alert("กรุณากรอกชื่อสินค้า");
+				$("#name").focus();
+				return false;
+			}
+			if ($("#price").val() == "") {
+				alert("กรุณากรอกราคาสินค้า");
+				$("#price").focus();
+				return false;
+			}
+			if ($("#qty").val() == "") {
+				alert("กรุณากรกอกจำนวน");
+				$("#qty").focus();
+				return false;
+			}
+      if ($("#type").val() == "") {
+				alert("กรุณากรกอกประเภท");
+				$("#type").focus();
+				return false;
+			}
+      
+
+			if ($("#unit").val() == "") {
+				alert("กรุณากรกหน่วย");
+				$("#unit").focus();
+				return false;
+			}
+
+			if ($("#productinsurance").val() == "") {
+				alert("กรุณากรอกปรกัน");
+				$("#productinsurance").focus();
+				return false;
+			}
+			if ($("#brand").val() == "") {
+				alert("กรุณากรอกยี่ห้อ");
+				$("#brand").focus();
+				return false;
+			}
+			if ($("#detail").val() == "") {
+				alert("กรุณากรอกรายละเอียด");
+				$("#detail").focus();
+				return false;
+			}
+			if ($("#description").val() == "") {
+				alert("กรุณากรอกคำอธิบาย");
+				$("#description").focus();
+				return false;
+			}
+
+		});
+	});
+</script>
+
+
+
+
+<div style="height: 10%"></div>
+<div style="text-align: center;">
+<h1><i class="bi bi-plus-circle"></i> เพิมสินค้า</h1>
+</div>
+
+
+
+<div class ="container" style="padding-top:3%;width:75%">
+
+{% for m in messages%}
+	<h4 style="color:#ff0000">{{ m }}</h4>
+{% endfor %}
+
+
+<form method="post" enctype="multipart/form-data" action="/add_prod">
+{% csrf_token %}
+
+<div class="form-group">
+	<label for="exampleInputEmail1">ชื่อสินค้า</label>
+	<input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="">
+</div>
+
+<div class="form-row">
+	<div class="form-group col-md-6">
+		<label for="exampleInputEmail1">ราคา</label>
+		<input type="text" class="form-control" id="price" name="price" aria-describedby="emailHelp" placeholder="">
+	</div>
+		<div class="form-group col-md-6">
+		<label for="exampleInputPassword1">จำนวน</label>
+		<input type="text" class="form-control" id="qty" name="qty" aria-describedby="emailHelp" placeholder="">
+	</div>
+</div>
+
+<div class="form-row">
+	<div class="form-group col-md-6">
+		<label for="exampleInputEmail1">ประเภท</label>
+		<input type="text" class="form-control" id="type" name="type" aria-describedby="emailHelp" placeholder="">
+	</div>
+
+  <div class="form-group col-md-6">
+		<label for="exampleInput">หน่วย</label>
+		<input type="num" class="form-control" id="unit" name="unit" aria-describedby="emailHelp" placeholder="">
+	</div>
+</div>
+
+
+<div class="form-row">
+	
+		<div class="form-group col-md-6">
+			<label for="exampleInput">ประกัน</label>
+			<input type="text" class="form-control" id="productinsurance" name="productinsurance" aria-describedby="emailHelp" placeholder="">
+	</div>
+  <div class="form-group col-md-6">
+    <label for="exampleInputEmail1">ยี่ห้อ</label>
+    <input type="text" class="form-control" id="brand" name="brand" aria-describedby="emailHelp" placeholder="">
+  </div>
+</div>
+
+
+
+
+
+
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">รายละเอียด</label>
+  <textarea class="form-control" name="detail" id="detail" rows="3"></textarea>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">คำอธิบาย</label>
+  <textarea class="form-control" name="description" id="detail" rows="3"></textarea>
+</div>
+
+
+
+<input type="hidden" class="form-control" id="status" name="status"
+value="2">
+<div class="form-row">
+
+
+
+
+<script>
+$(document).ready(function() {
+$("#img1").change(function() {
+	if (this.files && this.files[0]) {
+		var FR = new FileReader();
+
+		FR.onload = function(e) {
+			$("#preview1").attr("src", e.target.result);
+			img_data = e.target.result;
+		};
+		FR.readAsDataURL(this.files[0]);
+	}
+});
+})
+
+
+$(document).ready(function() {
+  $("#img2").change(function() {
+    if (this.files && this.files[0]) {
+      var FR = new FileReader();
+  
+      FR.onload = function(e) {
+        $("#preview2").attr("src", e.target.result);
+        img_data = e.target.result;
+      };
+      FR.readAsDataURL(this.files[0]);
+    }
+  });
+  })
+
+  $(document).ready(function() {
+    $("#img3").change(function() {
+      if (this.files && this.files[0]) {
+        var FR = new FileReader();
+    
+        FR.onload = function(e) {
+          $("#preview3").attr("src", e.target.result);
+          img_data = e.target.result;
+        };
+        FR.readAsDataURL(this.files[0]);
+      }
+    });
+    })
+</script>
+
+
+<div class="row">
+
+<div class="col-4">
+<div class="" style="padding: 10px;">
+	<div>เพิ่มภาพสินค้า 1</div>
+	<diV style="height: 30%;">
+	<img src="" id="preview1" style="width: 40%;" >
+	</diV>
+</div>
+<div class="file-field input-field">
+	<input type="file" name="img1" id="img1"
+		class="btn grey">
+</div>
+</div>
+
+
+
+<div class="col-4">
+  <div class="" style="padding: 10px;">
+    <div>เพิ่มภาพสินค้า 2</div>
+    <diV style="height: 30%;">
+    <img src="" id="preview2" style="width: 40%;" >
+    </diV>
+  </div>
+  <div class="file-field input-field">
+    <input type="file" name="img2" id="img2"
+      class="btn grey">
+  </div>
+  </div>
+
+
+
+  <div class="col-4">
+    <div class="" style="padding: 10px;">
+      <div>เพิ่มภาพสินค้า 3</div>
+      <diV style="height: 30%;">
+      <img src="" id="preview3" style="width: 40%;" >
+      </diV>
+    </div>
+    <div class="file-field input-field">
+      <input type="file" name="img3" id="img3"
+        class="btn grey">
+    </div>
+    </div>
+
+  </div>
+
+
+
+<div style="text-align: center;padding-top:5%;">
+<button type="submit" class="btn btn-primary" name="submit" id="addproduct" role="button">เพิ่ม</button>
+<a type="reset" class="btn btn-danger" href="/showallproducts">ยกเลิก</a>
+</div>
+
+
+</form>
+
+</div>
+</div>
+
+{%endblock%}

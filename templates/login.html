@@ -2,9 +2,9 @@
 {% load static %}
 {%block body%}
 
-<div class="container" style="width: 40%">
+<div class="container" style="width: 30%">
 	<div class="card" >
-    <div class="card-header  p-4 mb-7" style="background-color:rgb(41 185 0);color: #fff;">
+    <div class="card-header  p-4 mb-7" style="background-color:rgb(41 185 0);color: #fff;    border: 1%;">
       <h3 style="text-align: center;">เข้าสู่ระบบ</h3>
     </div>
 
@@ -14,10 +14,7 @@
         {% csrf_token %}
         <div class="input-group form-group">
         
-        
-
           <div class="input-group-prepend" >
-          
             <span class="input-group-text"><i class="fas fa-user"style="color: #000000;"></i></span>
           </div>
           <input type="text" class="form-control" id = "username" name = "username" placeholder="ชื่อผู้เข้าใช้">
@@ -30,9 +27,12 @@
           <input type="password" class="form-control" id = "pass" name = "pass" placeholder="รหัสผ่าน">
         </div>
         
-        <div style="text-align: center;">
+
+
+        <div style="text-align: center;color:#ff0000;">
         {% for m in messages%}
-        <h style="color:#ff0000">{{ m }}</h>
+        <h3><i class="bi bi-person-x"></i></h3>
+        <h5 style="color:#ff0000"> {{ m }}</h5>
         {% endfor %}
         </div>
 
@@ -44,7 +44,7 @@
 
 
 <div style="text-align: center; margin-top: 10px;padding-top:3%;">
-  <a href="/register" style="color: #10ff00; font-size: 18px;">สมัคสมาชิก</a>
+  <a href="/register" style="color: #10ff00; font-size: 25px;"><i class="bi bi-person-plus-fill"></i> สมัคสมาชิก</a>
 </div>
 
     

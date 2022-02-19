@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'project01.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dbjncom2',
+        'NAME': 'projectdb3',
         'USER':'root',
         'PASSWORD':'',
         'host':'',

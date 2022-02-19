@@ -1,0 +1,87 @@
+{% extends 'main.html'%}
+{% load static %}
+{%block body%}
+
+
+
+<script language="JavaScript">
+  function chkdel(){
+    if(confirm('กรุณายืนยันการลบอีกครั้ง !!!')){
+      return true;
+    }else{
+      return false;
+    }
+  }
+</script >
+
+
+<style>
+  .c {
+    text-align: center;
+  }
+  .r{
+    text-align: right;
+  }
+</style>
+
+
+
+<a tepe="button" href="/add_product" class="btn btn-success md-5 btn-lg"><i class="bi bi-plus-circle"></i> เพิ่มสินค้า</a>
+<div style="padding-top:2%;"></div>
+
+<table id="example" class="table table-hover " style="width:100%;">
+  <thead>
+      <tr class="c">
+          <th>ชื่อ</th>
+          <th>ราคา</th>
+          <th>จำนวน</th>
+          <th>ยี่ห้อ</th>
+          <th>ประเภท</th>
+          <th class="c">แก้ไข/ลบ</th>
+          
+      </tr>
+  </thead>
+  
+  <tbody>
+    {%for p in pd%}
+      <tr>
+          <td>{{p.name}}</td>
+
+          <td class="">
+
+            <div class="row">
+              <div class="col-3"></div>
+              <div class = "col-4">
+              {{p.price}}
+              </div>
+              <div class="col-1">
+              บาท
+            </div>
+          </td>
+
+          <td class="c">{{p.qty}}</td>
+          <td class="c">{{p.brand}}</td>
+          <td class="c">{{p.type}}</td>
+          <td class="c">
+            
+            <form action="delete_product" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="id" value={{p.id}}>
+              <a tepe="button" href="#" class="btn btn-primary md-5"><i class="bi bi-pencil-square"></i></a>
+              <button tepe="submit" class="btn btn-danger md-5" onclick="return confirm('คุณต้องการจะลบสินค้าหรือไม่')"><i class="bi bi-trash"></i></button>
+              
+            </form>
+
+          </td>
+
+        {%endfor%}
+      </tr>
+  
+    </table>
+    <div style="text-align: center;padding-top:5%;">
+      <a type="reset" class="btn btn-secondary btn-lg" href="/admin_u"><i class="bi bi-arrow-left-circle"></i> กลับ</a>
+    </div> 
+
+  
+
+{% endblock%}

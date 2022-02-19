@@ -4,7 +4,7 @@
 
 {%for p in pd%}
         
-<div class="container" style="width: 80%;padding-top: 1%;">
+<div class="container" style="padding-top: 1%;">
   <div class="">
     <div class="card-body">
       <div class="row">
@@ -23,8 +23,11 @@
           <h2 class="animated rubberBand">{{p.name}}</h2>
         </div>
         <br>
-        <div class="col m-5">
-            <table class="table table-borderless" style="font-size: 20px">
+
+        <div class = "row ">
+        <div class = "col-3"></div>
+        <div class="col m-4" style="width: 50%;">
+            <table class="table table-borderless text-break" style="font-size: 20px">
               <thead>
                 <tr>
                   <th scope="row">
@@ -40,6 +43,11 @@
                 <tr>
                   <th scope="row"> ยี่ห้อ</th>
                   <td>{{p.brand}}</td>
+                </tr>
+
+                <tr>
+                  <th scope="row"> ประกัน</th>
+                  <td>{{p.productinsurance}} ปี</td>
                 </tr>
                 
                 <tr>
@@ -60,13 +68,14 @@
               </tbody>
             </table>
 
-         
-
-
         </div>
+      </div>
+
+
         <div style="text-align: center;padding-top:3%;">
-          <button type="submit" class="btn btn-primary">ซื้อ</button>
-          <a type="reset" class="btn btn-danger" href="/index">ยกเลิก</a>
+          <button type="submit" class="btn btn-primary btn-lg"style="background-color: #2f9500;
+          border-color: #2f9500;"><i class="bi bi-bag-plus-fill"></i> ซื้อ</button>
+          <a type="reset" class="btn btn-secondary btn-lg" href="/index"><i class="bi bi-arrow-left-circle"></i> กลับ</a>
         </div>  
       </div>
     </div>
